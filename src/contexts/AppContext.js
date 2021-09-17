@@ -20,8 +20,8 @@ export const SHOW_QNA_BUTTON = {
   [PAGES.qna]: false,
   [PAGES.connect]: true,
   [PAGES.main]: true,
-  [PAGES.change]: true,
-  [PAGES.mint]: true
+  [PAGES.change]: false,
+  [PAGES.mint]: false
 }
 
 export const AppContext = React.createContext({});

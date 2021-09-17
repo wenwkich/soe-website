@@ -12,7 +12,7 @@ export const Header = () => {
 
   return (
     <>
-      { showBack && <div className="header-button-left" onClick={(e) => goBack()}>BACK</div> }
+      { showBack && <div className="header-button-left" onClick={(e) => goBack()}>bacc</div> }
       { showQnA && <div className="header-button-right" onClick={(e) => goToQnA()}>?</div> }
     </>
   )

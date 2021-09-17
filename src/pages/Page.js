@@ -18,7 +18,7 @@ export const Page = () => {
     } else {
       setLocation(PAGES.main);
     }
-  }, [connected]);
+  }, [connected, setLocation]);
 
   return useMemo(() => {
     switch (location) {

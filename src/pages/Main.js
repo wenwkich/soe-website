@@ -6,8 +6,12 @@ export const Main = () => {
   return (
     <>
       <div>this is the main component</div>
-      <div className="button" onClick={(e) => goToMint(2)}>Mint</div>
-      <div className="button" onClick={(e) => goToChange(2)}>Change</div>
+      <div className="button" >view on opensea</div>
+      <div className="button" onClick={(e) => goToMint(2)}>mint</div>
+      <div className="button" onClick={(e) => goToChange(2)}>change message</div>
+      <style>
+        
+      </style>
     </>
   )
 }

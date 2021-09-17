@@ -8,7 +8,7 @@ function App() {
   return (
     <Web3Provider>
       <AppProvider>
-        <div className="container">
+        <div className="container my-4">
           <Header />
           <Page />
         </div>

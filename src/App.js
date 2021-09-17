@@ -8,8 +8,10 @@ function App() {
   return (
     <Web3Provider>
       <AppProvider>
-        <Header />
-        <Page />
+        <div className="container">
+          <Header />
+          <Page />
+        </div>
       </AppProvider>
     </Web3Provider>
   );

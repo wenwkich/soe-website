@@ -32,11 +32,11 @@ export const AppProvider = ({ children }) => {
   const [lastLocation, setLastLocation] = useState();
   const [tokenId, setTokenId] = useState(0);
   
-  const showBack = useCallback(() => {
+  const showBack = useMemo(() => {
     return SHOW_BACK_BUTTON[location];
   }, [location]);
 
-  const showQnA = useCallback(() => {
+  const showQnA = useMemo(() => {
     return SHOW_QNA_BUTTON[location];
   }, [location]);
 

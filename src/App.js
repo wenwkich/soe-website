@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { Header } from "./components/header";
+import { Web3Provider } from './contexts/Web3Context';
+import { AppProvider } from './contexts/AppContext';
+import { Page } from "./pages/Page";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Web3Provider>
+      <AppProvider>
+        <Header />
+        <Page />
+      </AppProvider>
+    </Web3Provider>
   );
 }
 

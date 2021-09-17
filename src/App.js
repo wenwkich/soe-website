@@ -10,7 +10,9 @@ function App() {
       <AppProvider>
         <div className="container my-4">
           <Header />
-          <Page />
+          <div className="d-flex flex-row justify-content-center align-items-center">
+            <Page  />
+          </div>
         </div>
       </AppProvider>
     </Web3Provider>

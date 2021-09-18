@@ -1,34 +1,7 @@
 import { useContext } from "react"
 import styled from "styled-components";
-import { OptionButton } from "../components/common";
+import { OutlinedButton } from "../components/common";
 import { AppContext } from "../contexts/AppContext";
-
-const MainWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const OptionsWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 20px;
-
-  @media (max-width: 800px) {
-    & {
-      flex-direction: column;
-      align-items: space-around;
-    }
-
-    ${OptionButton} {
-      margin-bottom: 8px;
-    }
-}
-`;
 
 export const Main = () => {
   const { goToMint, goToChange } = useContext(AppContext);
@@ -47,3 +20,34 @@ export const Main = () => {
     </MainWrapper>
   )
 }
+
+const OptionButton = styled(OutlinedButton)`
+  min-width: 25%;
+`;
+
+const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const OptionsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+
+  @media (max-width: 763px) {
+    & {
+      flex-direction: column;
+      align-items: space-around;
+    }
+
+    ${OptionButton} {
+      margin-bottom: 8px;
+    }
+}
+`;

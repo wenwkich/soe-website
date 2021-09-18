@@ -22,8 +22,4 @@ export const OutlinedButton = styled(Button)`
   }
 `;
 
-export const OptionButton = styled(OutlinedButton)`
-  min-width: 25%;
-`;
-
 export const HeaderButton = Button;

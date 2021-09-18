@@ -2,18 +2,25 @@ import { Header } from "./components/header";
 import { Web3Provider } from './contexts/Web3Context';
 import { AppProvider } from './contexts/AppContext';
 import { Page } from "./pages/Page";
+import styled from "styled-components";
+
+const AppWrapper = styled.div`
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10% 20px 10%;
+`;
 
 function App() {
 
   return (
     <Web3Provider>
       <AppProvider>
-        <div className="container my-4">
+        <AppWrapper>
           <Header />
-          <div className="d-flex flex-row justify-content-center align-items-center">
-            <Page  />
-          </div>
-        </div>
+          <Page />
+        </AppWrapper>
       </AppProvider>
     </Web3Provider>
   );

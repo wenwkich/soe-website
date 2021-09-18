@@ -1,8 +1,16 @@
+import styled from "styled-components"
+
+const QnAWrapper = styled.div`
+  margin-top: 30px;
+  font-size: 1em;
+`;
+
 export const QnA = () => {
   return (
-    <>
-      <div>
-        you seem a little lost... a little qna might help
+    <QnAWrapper>
+        <p>
+          you seem a little lost... a little qna might help
+        </p>
         <p>
           WHAT IS THIS?
           <br />
@@ -36,7 +44,7 @@ export const QnA = () => {
         <p>
           IS IT POSSIBLE TO MAKE IT IMMUTABLE?
           <br />
-          - it is also possible pay 420 eth (10000x the initial price) to make it immutable.
+          - it is also possible to pay 420 eth (10000x the initial price) to make it immutable.
         </p>
         <p>
           ANY RESERVED TOKEN?
@@ -47,11 +55,6 @@ export const QnA = () => {
           WHEN CAN I MINT?
           <br />
           - time for minting the rest of 40 will be available in day 1, day 2, day 4, day 8, day 16 (each day will sell 8 tokens)... SALE TIME TBA
-        </p>
-        <p>
-          WHERE CAN I MINT?
-          <br />
-          - here
         </p>
         <p>
           CAN I GET IT FROM OPENSEA?
@@ -68,7 +71,6 @@ export const QnA = () => {
           <br />
           - twitter & discord
         </p>
-      </div>
-    </>
+    </QnAWrapper>
   )
 }

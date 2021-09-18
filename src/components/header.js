@@ -1,8 +1,16 @@
 import { useContext } from "react"
-import { AppContext } from "../contexts/AppContext"
+import styled from "styled-components";
+import { AppContext } from "../contexts/AppContext";
+import { HeaderButton } from "./common";
+
+const HeaderWrapper = styled.div`
+  position: absolute;
+  z-index: 100;
+  top: 10px;
+  left: 10%;
+`;
 
 export const Header = () => {
-
   const { 
     showBack, 
     showQnA, 
@@ -11,9 +19,9 @@ export const Header = () => {
   } = useContext(AppContext); 
 
   return (
-    <>
-      { showBack && <div className="header-button-left" onClick={(e) => goBack()}>bacc</div> }
-      { showQnA && <div className="header-button-right" onClick={(e) => goToQnA()}>?</div> }
-    </>
+    <HeaderWrapper>
+      { showBack && <HeaderButton onClick={(e) => goBack()}>bacc</HeaderButton> }
+      { showQnA && <HeaderButton onClick={(e) => goToQnA()}>?</HeaderButton> }
+    </HeaderWrapper>
   )
 }

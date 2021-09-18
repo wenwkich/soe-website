@@ -12,7 +12,7 @@ export const Main = () => {
 
   const [ tokenId, setTokenId ] = useState(0);
   const [ tmpTokenId, setTmpTokenId ] = useState(0);
-  const [ message, setMessage ] = useState("are you the owner?");
+  const [ warning, setWarning ] = useState("no warnings available");
   const [ tokenMetadata, setTokenMetadata ] = useState({});
   const { goToMint, goToChange } = useContext(AppContext);
   const getTokenMetadata = useTokenMetadata();
@@ -21,7 +21,7 @@ export const Main = () => {
     getTokenMetadata(tokenId).then((data) => setTokenMetadata({...data}));
   }, [tokenId]);
 
-  // TODO change the message acoording to the 
+  // TODO change the warning acoording to the 
 
   const handleMint = (tokenId) => {
     // TODO handle sale time not started
@@ -62,10 +62,10 @@ export const Main = () => {
       { <div>message: "{tokenMetadata.name}"</div> }
       <OptionsWrapper>
         <OptionButton>view on opensea</OptionButton>
-        <OptionButton onClick={(e) => handleMint(2)}>mint</OptionButton>
-        <OptionButton onClick={(e) => handleChange(2)}>change message</OptionButton>
+        <OptionButton onClick={(e) => handleMint(tokenId)}>mint</OptionButton>
+        <OptionButton onClick={(e) => handleChange(tokenId)}>change message</OptionButton>
       </OptionsWrapper>
-      <div style={{ color: "#DE9300"}}>{message}</div>
+      <div style={{ color: "#DE9300"}}>{warning || "\n"}</div>
     </MainWrapper>
   )
 }

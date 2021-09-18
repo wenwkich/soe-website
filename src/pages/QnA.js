@@ -14,12 +14,7 @@ export const QnA = () => {
         <p>
           WHAT IS THIS?
           <br />
-          - this is mutable nft of a bunch of... signatures
-        </p>
-        <p>
-          HOW MANY WILL BE MINTED?
-          <br />
-          - only **42** SoE will be ever minted. few will own them.
+          - this might be the first of its kind: **mutable** nft with signatures-like visual. only **42** will be minted.
         </p>
         <p>
           HOW DOES SIGNATURES WORK?
@@ -29,7 +24,7 @@ export const QnA = () => {
         <p>
           HOW MUCH IS IT?
           <br />
-          - initial minting price is FREE
+          - FREE to mint, honey.
         </p>
         <p>
           WHY YOU SAY IT'S MUTABLE?
@@ -44,27 +39,22 @@ export const QnA = () => {
         <p>
           IS IT POSSIBLE TO MAKE IT IMMUTABLE?
           <br />
-          - it is also possible to pay 420 eth (10000x the initial price) to make it immutable.
+          - it is also possible to pay 420 eth (1000x the initial price) to make it immutable.
         </p>
         <p>
           ANY RESERVED TOKEN?
           <br />
-          - i will keep first two tokens, not sure if they will be on sale one day. first token will be immutable.
+          - i will keep the first two tokens, not sure if they will be on sale one day. first token will be immutable.
         </p>
         <p>
           WHEN CAN I MINT?
           <br />
-          - time for minting the rest of 40 will be available in day 1, day 2, day 4, day 8, day 16 (each day will sell 8 tokens)... SALE TIME TBA
+          - time for minting the rest of 40 will be available in day 1, day 2, day 4, day 8, day 16 (8 tokens for each day)... SALE TIME TBA
         </p>
         <p>
           CAN I GET IT FROM OPENSEA?
           <br />
           - if you missed the initial 42 mints, it is also available on opensea to trade.
-        </p>
-        <p>
-          WHY 42?
-          <br />
-          - google about it. son.
         </p>
         <p>
           SOCIAL MEDIA?

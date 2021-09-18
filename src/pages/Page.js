@@ -1,11 +1,12 @@
 import { useContext, useEffect, useMemo } from "react";
-import { AppContext, PAGES } from "../contexts/AppContext";
+import { AppContext } from "../contexts/AppContext";
 import { Web3Context } from "../contexts/Web3Context";
 import { ConnectMetaMask } from "./ConnectMetaMask";
 import { Main } from "./Main";
 import { Mint } from "./Mint";
 import { QnA } from "./QnA";
 import { Change } from "./Change";
+import { PAGES } from "../constants";
 
 export const Page = () => {
 

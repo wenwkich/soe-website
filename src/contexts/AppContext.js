@@ -1,28 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-
-export const PAGES = {
-  qna: "qna",
-  connect: "connect",
-  main: "main",
-  change: "change",
-  mint: "mint",
-}
-
-export const SHOW_BACK_BUTTON = {
-  [PAGES.qna]: true,
-  [PAGES.connect]: false,
-  [PAGES.main]: false,
-  [PAGES.change]: true,
-  [PAGES.mint]: true
-}
-
-export const SHOW_QNA_BUTTON = {
-  [PAGES.qna]: false,
-  [PAGES.connect]: true,
-  [PAGES.main]: true,
-  [PAGES.change]: false,
-  [PAGES.mint]: false
-}
+import { PAGES, SHOW_BACK_BUTTON, SHOW_QNA_BUTTON } from "../constants";
 
 export const AppContext = React.createContext({});
 

@@ -33,3 +33,9 @@ export const TOKEN_STATUS = {
   IMMUTABLE: "immutable",
   MUTABLE: "mutable"
 }
+
+export const TOKEN_STATUS_TO_COLOR = {
+  [TOKEN_STATUS.NOT_MINTED]: "#12DE00",
+  [TOKEN_STATUS.IMMUTABLE]: "#DE0000",
+  [TOKEN_STATUS.MUTABLE]: "#0400DE"
+}

@@ -97,5 +97,5 @@ const OptionsWrapper = styled.div`
     ${OptionButton} {
       margin-bottom: 8px;
     }
-}
+  }
 `;

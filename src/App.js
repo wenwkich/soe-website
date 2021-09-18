@@ -9,7 +9,7 @@ const AppWrapper = styled.div`
   min-height: 100vh;
   justify-content: center;
   align-items: center;
-  padding: 20px 10% 20px 10%;
+  padding: 0 10% 0 10%;
 `;
 
 function App() {

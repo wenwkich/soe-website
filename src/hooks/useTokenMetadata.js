@@ -41,6 +41,7 @@ export const useTokenMetadata = () => {
   const getTokenUri = async (tokenId) => "data:application/json;base64,eyJuYW1lIjogIndlIGFyZSBnb25uYSBtYWtlIGl0IiwgImRlc2NyaXB0aW9uIjogIlNpZ25hdHVyZXMgb24gRXRoZXJldW0gYXJlIG11dGFibGUsIHNpZ25hdHVyZS1saWtlIE5GVHMgZ2VuZXJhdGVkIHdpdGggb3duZXIncyBpbnB1dCIsICJpbWFnZSI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOakF3SWlCb1pXbG5hSFE5SWpZd01DSWdkbWxsZDBKdmVEMGlNQ0F3SURZd01DQTJNREFpSUhodGJHNXpQU0pvZEhSd09pOHZkM2QzTG5jekxtOXlaeTh5TURBd0wzTjJaeUkrUEhCaGRHZ2daRDBpVFNBeU1qVWdNekkxSUVNZ016VXdJREkxTUNBek5UQWdNekkxSURFM05TQXlOelVnVXlBek1qVWdNakkxSURJeU5TQXlNalVnVXlBek56VWdNVGMxSURNM05TQXlOelVnVXlBeE5UQWdNekkxSURRd01DQTBOVEFnVXlBME1EQWdOREF3SURNMU1DQXpNREFnVXlBME1qVWdNakkxSURRd01DQXpOelVnVXlBek56VWdNVFV3SURNeU5TQXlNREFnSWlCemRISnZhMlV0ZDJsa2RHZzlJak1pSUhOMGNtOXJaVDBpWW14aFkyc2lJR1pwYkd3OUluUnlZVzV6Y0dGeVpXNTBJaUF2UGp3dmMzWm5QZz09In0=";
 
   return useCallback(async (tokenId) => {
+    // TODO use try catch
     const tokenUri = await getTokenUri(tokenId);
     const json = Buffer.from(tokenUri.substring(29), "base64").toString();
     const { image, name, description } = JSON.parse(json);

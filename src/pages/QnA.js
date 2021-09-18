@@ -24,7 +24,7 @@ export const QnA = () => {
         <p>
           HOW MUCH IS IT?
           <br />
-          - FREE to mint, honey.
+          - **FREE** to mint, honey.
         </p>
         <p>
           WHY YOU SAY IT'S MUTABLE?

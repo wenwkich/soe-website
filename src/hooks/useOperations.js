@@ -10,7 +10,6 @@ export const useOperations = () => {
     return contract.mintSignature(tokenId, uri)
       .then((tx) => tx.wait().then(successHandler))
       .catch(errHandler);
-    ;
   }, []);
 
   const setTokenUri = useCallback((tokenId, uri, price, errHandler, successHandler, loadingHandler) => {

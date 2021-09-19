@@ -5,16 +5,22 @@ import { OutlinedButton } from "../components/common";
 import { AppContext } from "../contexts/AppContext";
 import { useGenSvg } from "../hooks/useGenSvg";
 import { useTokenMetadata } from "../hooks/useTokenMetadata";
+import { ethers } from "ethers"; 
+import { useOperations } from "../hooks/useOperations";
+import { DEFAULT_SVG } from "../constants";
 
 export const Change = () => {
 
   const [ message, setMessage ] = useState("");
-  const [ image, setImage ] = useState();
+  const [ image, setImage ] = useState(DEFAULT_SVG);
   const { tokenId } = useContext(AppContext);
   const [ tokenMetadata, setTokenMetadata ] = useState({});
   const getTokenMetadata = useTokenMetadata();
   const [txMessage, setTxMessage] = useState("no warnings available");
   const genSvg = useGenSvg();
+  const [ mutablePrice, setMutablePrice ] = useState(0);
+  const [ immutablePrice, setImmutablePrice ] = useState(0);
+  const { setTokenUri, setImmutableWithUri } = useOperations();
 
   useEffect(() => {
     genSvg(message).then(({ image }) => setImage(image));
@@ -23,21 +29,21 @@ export const Change = () => {
   useEffect(() => {
     getTokenMetadata(tokenId).then((data) => {
       setTokenMetadata({ ...data });
-      setMessage(data.name);
-      setImage(data.image);
+      if (data.name) setMessage(data.name);
+      if (data.image) setImage(data.image);
+      if (data.mutablePrice) setMutablePrice(ethers.utils.formatEther(data.mutablePrice));
+      if (data.immutablePrice) setImmutablePrice(ethers.utils.formatEther(data.immutablePrice));
     });
 
   }, [tokenId]);
 
-  // TODO handle mint
-  const handleChange = () => {
-    console.log(message);
-    console.log(tokenId);
-  }
-
-  const handleChangeToImmutable = () => {
-    console.log(message);
-    console.log(tokenId);
+  const handleErr = (err) => {
+    const errRegex = /"message":\s?"(.*?)"/i;
+    const match = err.message.match(errRegex);
+    console.log(match)
+    if (match) {
+      setTxMessage(match[1]);
+    }
   }
 
   return (
@@ -46,13 +52,32 @@ export const Change = () => {
       <Input value={message} cols="40" rows="5" onChange={(e) => setMessage(e.target.value)} />
       <img src={image} alt="SOE" width={400} height={400} />
       <OptionsWrapper>
-        <OptionButton onClick={(e) => handleChange()}>spend {tokenMetadata.mutablePrice} eth to change</OptionButton>
-        <OptionButton onClick={(e) => handleChangeToImmutable()}>spend {tokenMetadata.immutablePrice} eth to make immutable</OptionButton>
+        <OptionButton 
+          onClick={(e) => setTokenUri(
+            tokenId, 
+            message, 
+            tokenMetadata.mutablePrice, 
+            handleErr
+          )}
+        >spend {mutablePrice} eth to change</OptionButton>
+        <OptionButton 
+          onClick={(e) => setImmutableWithUri(
+            tokenId, 
+            message, 
+            tokenMetadata.immutablePrice, 
+            handleErr
+          )}
+        >spend {immutablePrice} eth to make immutable</OptionButton>
       </OptionsWrapper>
-      <div style={{ color: "#DE9300" }}>{txMessage}</div>
+      <TxMessage style={{ color: "#DE9300" }}>{txMessage}</TxMessage>
     </MintWrapper>
   )
 }
+
+const TxMessage = styled.div`
+  max-width: 700px;
+  overflow-wrap: break-word;
+`;
 
 const Input = styled.textarea`
   padding: 10px;

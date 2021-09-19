@@ -26,12 +26,12 @@ export const useTokenMetadata = () => {
   }
 
   const getMutablePrice = (tokenId, errHandler) => {
-    return contract.saleTime(tokenId)
+    return contract.signatureChangePrice(tokenId)
       .catch(errHandler);
   }
   
   const getImmutablePrice = (tokenId, errHandler) => {
-    return contract.signatureChangePrice(tokenId)
+    return contract.immutablePrice()
       .catch(errHandler);
   }
 
@@ -51,15 +51,19 @@ export const useTokenMetadata = () => {
         isMinted = false;
       }
     }
-    console.log(owner);
+
     isMinted = owner && owner != "0x0000000000000000000000000000000000000000";
-    const isOwner = owner == account;
+    const isOwner = owner && owner == account;
 
     let tokenUri, image, name, description;
     if (isMinted) {
-      tokenUri = await getTokenUri(tokenId, errHandler);
-      const json = Buffer.from(tokenUri.substring(29), "base64").toString();
-      ({ image, name, description } = JSON.parse(json));
+      try {
+        tokenUri = await getTokenUri(tokenId, errHandler);
+        const json = Buffer.from(tokenUri.substring(29), "base64").toString();
+        ({ image, name, description } = JSON.parse(json));
+      } catch (err) {
+        console.error(err);
+      }
     } else {
       image = DEFAULT_SVG;
     }
@@ -67,7 +71,7 @@ export const useTokenMetadata = () => {
     const isImmutable = await getIsImmutable(tokenId, errHandler);
     const saleStartTime = await getSaleTime(tokenId, errHandler);
 
-    const immutablePrice = await getImmutablePrice(tokenId);
+    const immutablePrice = await getImmutablePrice();
     const mutablePrice = await getMutablePrice(tokenId);
     const status = getStatus(isMinted, isImmutable);
 

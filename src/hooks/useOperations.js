@@ -10,13 +10,13 @@ export const useOperations = () => {
       .catch(errHandler);
   }, []);
 
-  const setTokenUri = useCallback(() => {
-    return contract.setTokenUri(tokenId, uri, errHandler)
+  const setTokenUri = useCallback((tokenId, uri, price, errHandler) => {
+    return contract.setTokenUri(tokenId, uri, { value: price })
       .catch(errHandler);
   }, []);
 
-  const setImmutableWithUri = useCallback(() => {
-    return contract.setImmutableWithUri(tokenId, uri, errHandler)
+  const setImmutableWithUri = useCallback((tokenId, uri, price, errHandler) => {
+    return contract.setImmutableWithUri(tokenId, uri, { value: price })
       .catch(errHandler);
   }, []);
 

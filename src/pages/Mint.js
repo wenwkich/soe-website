@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { OutlinedButton } from "../components/common";
 import { AppContext } from "../contexts/AppContext";
 import { useGenSvg } from "../hooks/useGenSvg";
+import { useOperations } from "../hooks/useOperations";
 
 export const Mint = () => {
 
@@ -11,15 +12,19 @@ export const Mint = () => {
   const { tokenId } = useContext(AppContext);
   const genSvg = useGenSvg();
   const [ txMessage, setTxMessage ] = useState("no warnings available");
+  const { mintSignature } = useOperations();
 
   useEffect(() => {
     genSvg(message).then(({ image }) => setImage(image));
   }, [message]);
 
-  // TODO handle mint
-  const handleMint = () => {
-    console.log(message);
-    console.log(tokenId);
+  const handleErr = (err) => {
+    const errRegex = /"message":\s?"(.*?)"/i;
+    const match = err.message.match(errRegex);
+    console.log(match)
+    if (match) {
+      setTxMessage(match[1]);
+    }
   }
 
   return (
@@ -28,12 +33,19 @@ export const Mint = () => {
       <Input cols="40" rows="5" onChange={(e) => setMessage(e.target.value)}/>
       <img src={image} alt="SOE" width={400} height={400} />
       <OptionsWrapper>
-        <OptionButton onClick={(e) => handleMint()}>mint for FREE</OptionButton>
+        <OptionButton 
+          onClick={(e) => mintSignature(
+            tokenId, 
+            message, 
+            handleErr
+          )}
+        >mint for FREE</OptionButton>
       </OptionsWrapper>
       <TxMessage style={{ color: "#DE9300" }}>{txMessage}</TxMessage>
     </MintWrapper>
   )
 }
+
 const TxMessage = styled.div`
   max-width: 700px;
   overflow-wrap: break-word;

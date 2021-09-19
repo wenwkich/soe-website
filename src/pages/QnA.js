@@ -52,6 +52,11 @@ export const QnA = () => {
           - time for minting the rest of 40 will be available in day 1, day 2, day 4, day 8, day 16 (8 tokens for each day)... SALE TIME TBA
         </p>
         <p>
+          WHEN IS "DAY 1"?
+          <br />
+          - stay tune in <a href="https://discord.gg/t4Q78ssF" target="_blank">discord</a> to find out
+        </p>
+        <p>
           CAN I GET IT FROM OPENSEA?
           <br />
           - if you missed the initial 42 mints, it is also available on opensea to trade.
@@ -59,7 +64,7 @@ export const QnA = () => {
         <p>
           SOCIAL MEDIA?
           <br />
-          - twitter & discord
+          - <a href="https://twitter.com/soe42nft" target="_blank">twitter</a> & <a href="https://discord.gg/t4Q78ssF" target="_blank">discord</a>
         </p>
     </QnAWrapper>
   )

@@ -57,7 +57,7 @@ export const Main = () => {
       <div>SoE #{tokenId}   
         <span 
           style={{color: TOKEN_STATUS_TO_COLOR[tokenMetadata.status] || "#000"}}
-        > {tokenMetadata.status}</span>
+        > { loading ? "..." : tokenMetadata.status }</span>
       </div>
       <div>owned by: {loading ? "..." : tokenMetadata.owner || "null"}</div>
       { tokenMetadata.isMinted ? 

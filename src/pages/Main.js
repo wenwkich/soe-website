@@ -12,7 +12,6 @@ export const Main = () => {
 
   const [ tokenId, setTokenId ] = useState(0);
   const [ tmpTokenId, setTmpTokenId ] = useState(0);
-  const [ warning, setWarning ] = useState("");
   const [ tokenMetadata, setTokenMetadata ] = useState({});
   const { goToMint, goToChange } = useContext(AppContext);
   const getTokenMetadata = useTokenMetadata();
@@ -24,7 +23,6 @@ export const Main = () => {
 
   const handleErr = (err) => {
     console.error(err);
-    setWarning(err.message);
   }
 
   useEffect(() => {
@@ -33,11 +31,11 @@ export const Main = () => {
       setTokenMetadata({...data});
       setLoading(false);
     });
-  }, [tokenId]);
+  }, [tokenId, getTokenMetadata, setTokenMetadata, setLoading]);
 
   const tsToStr = (ts) => {
     let date = new Date(ts * 1000).toUTCString();
-    if (date == "Invalid Date") return "TBA";
+    if (date === "Invalid Date") return "TBA";
     date = date.substr(0, date.length - 4);
     return `${date} UTC`;
   }
@@ -73,7 +71,6 @@ export const Main = () => {
         <OptionButton onClick={(e) => goToMint(tokenId)}>mint</OptionButton>
         <OptionButton onClick={(e) => goToChange(tokenId)}>change message</OptionButton>
       </OptionsWrapper>
-      {/* <div style={{ color: "#DE9300"}}>{warning}</div> */}
     </MainWrapper>
   )
 }

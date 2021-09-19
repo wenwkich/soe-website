@@ -33,7 +33,8 @@ export const Page = () => {
         return <ConnectMetaMask />;
       case PAGES.qna:
         return <QnA />;
+      default:
+        return <ConnectMetaMask />;
     }
-    return <ConnectMetaMask />;
   }, [location]);
 }

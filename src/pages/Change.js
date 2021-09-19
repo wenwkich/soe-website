@@ -24,7 +24,7 @@ export const Change = () => {
 
   useEffect(() => {
     genSvg(message).then(({ image }) => setImage(image));
-  }, [message]);
+  }, [message, genSvg]);
 
   useEffect(() => {
     getTokenMetadata(tokenId).then((data) => {
@@ -35,7 +35,7 @@ export const Change = () => {
       if (data.immutablePrice) setImmutablePrice(ethers.utils.formatEther(data.immutablePrice));
     });
 
-  }, [tokenId]);
+  }, [tokenId, getTokenMetadata]);
 
   const handleErr = (err) => {
     const errRegex = /"message":\s?"(.*?)"/i;

@@ -10,21 +10,21 @@ export const useOperations = () => {
     return contract.mintSignature(tokenId, uri)
       .then((tx) => tx.wait().then(successHandler))
       .catch(errHandler);
-  }, []);
+  }, [contract]);
 
   const setTokenUri = useCallback((tokenId, uri, price, errHandler, successHandler, loadingHandler) => {
     loadingHandler();
     return contract.setTokenUri(tokenId, uri, { value: price })
       .then((tx) => tx.wait().then(successHandler))
       .catch(errHandler);
-  }, []);
+  }, [contract]);
 
   const setImmutableWithUri = useCallback((tokenId, uri, price, errHandler, successHandler, loadingHandler) => {
     loadingHandler();
     return contract.setImmutableWithUri(tokenId, uri, { value: price })
       .then((tx) => tx.wait().then(successHandler))
       .catch(errHandler);
-  }, []);
+  }, [contract]);
 
   return {
     mintSignature,

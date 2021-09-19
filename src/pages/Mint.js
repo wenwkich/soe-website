@@ -17,7 +17,7 @@ export const Mint = () => {
 
   useEffect(() => {
     genSvg(message).then(({ image }) => setImage(image));
-  }, [message]);
+  }, [message, genSvg]);
 
   const handleErr = (err) => {
     const errRegex = /"message":\s?"(.*?)"/i;

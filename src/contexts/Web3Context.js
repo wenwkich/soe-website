@@ -34,6 +34,7 @@ export const Web3Provider = ({ children }) => {
   const initApp = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const network = await provider.getNetwork();
+    // eslint-disable-next-line
     if (network.chainId != chainId) {
       alert("To use this app you need to connect to Ethereum Network");
       return;
@@ -47,6 +48,7 @@ export const Web3Provider = ({ children }) => {
     });
 
     window.ethereum.on('chainChanged', function (networkId) {
+      // eslint-disable-next-line
       if (networkId != chainId) {
         setConnected(false);
         alert("To use this app you need to connect to Ethereum Network");

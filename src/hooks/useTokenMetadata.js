@@ -49,7 +49,9 @@ export const useTokenMetadata = () => {
       isMinted = false;
     }
 
+    // eslint-disable-next-line
     isMinted = owner && owner != "0x0000000000000000000000000000000000000000";
+    // eslint-disable-next-line
     const isOwner = owner && owner == account;
 
     let tokenUri, image, name, description;
@@ -91,5 +93,6 @@ export const useTokenMetadata = () => {
       mutablePrice,
       immutablePrice
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contract]);
 }

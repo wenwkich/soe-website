@@ -22,7 +22,6 @@ export const Mint = () => {
   const handleErr = (err) => {
     const errRegex = /"message":\s?"(.*?)"/i;
     const match = err.message.match(errRegex);
-    console.log(match)
     if (match) {
       setTxMessage(match[1]);
     }

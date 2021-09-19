@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { OutlinedButton, Link } from "../components/common";
 import { CONTRACT_ADDRESS, DEFAULT_SVG, TOKEN_STATUS_TO_COLOR } from "../constants";
 import { AppContext } from "../contexts/AppContext";
+import { Web3Context } from "../contexts/Web3Context";
 import { useTokenMetadata } from "../hooks/useTokenMetadata";
 
 export const Main = () => {
@@ -14,12 +15,11 @@ export const Main = () => {
   const [ tmpTokenId, setTmpTokenId ] = useState(0);
   const [ tokenMetadata, setTokenMetadata ] = useState({});
   const { goToMint, goToChange } = useContext(AppContext);
+  const { blockNumber, } = useContext(Web3Context);
   const getTokenMetadata = useTokenMetadata();
   const [ loading, setLoading ] = useState(true);
 
   const contractAddress = CONTRACT_ADDRESS;
-
-  console.log(contractAddress);
 
   const handleErr = (err) => {
     console.error(err);
@@ -28,10 +28,10 @@ export const Main = () => {
   useEffect(() => {
     setLoading(true);
     getTokenMetadata(tokenId, handleErr).then((data) => {
-      setTokenMetadata({...data});
-      setLoading(false);
+    setTokenMetadata({...data});
+    setLoading(false);
     });
-  }, [tokenId, getTokenMetadata, setTokenMetadata, setLoading]);
+  }, [tokenId, getTokenMetadata, setTokenMetadata, setLoading, blockNumber]);
 
   const tsToStr = (ts) => {
     let date = new Date(ts * 1000).toUTCString();

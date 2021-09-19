@@ -8,6 +8,7 @@ export const Web3Provider = ({ children }) => {
   const [account, setAccount] = useState();
   const [contract, setContract] = useState();
   const [connected, setConnected] = useState(false);
+  const [ blockNumber, setBlockNumber ] = useState(0);
   const contractAddress = CONTRACT_ADDRESS;
   const contractAbi = CONTRACT_ABI;
   const chainId = CHAIN_ID;
@@ -61,6 +62,10 @@ export const Web3Provider = ({ children }) => {
     window.ethereum.on('disconnect', function () {
       setConnected(false);
     });
+
+    provider.on('block', function (blockNumber) {
+      setBlockNumber(blockNumber);
+    })
   };
 
   const loadSigner = async (provider) => {
@@ -76,7 +81,7 @@ export const Web3Provider = ({ children }) => {
       setAccount(account);
       setContract(contract);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
 
   };
@@ -85,7 +90,8 @@ export const Web3Provider = ({ children }) => {
     connected,
     contract,
     connect,
-    account
+    account,
+    blockNumber
   };
 
   return (

@@ -12,10 +12,11 @@ export const Main = () => {
 
   const [ tokenId, setTokenId ] = useState(0);
   const [ tmpTokenId, setTmpTokenId ] = useState(0);
-  const [ warning, setWarning ] = useState("no warnings available");
+  const [ warning, setWarning ] = useState("");
   const [ tokenMetadata, setTokenMetadata ] = useState({});
   const { goToMint, goToChange } = useContext(AppContext);
   const getTokenMetadata = useTokenMetadata();
+  const [ loading, setLoading ] = useState(true);
 
   const handleErr = (err) => {
     console.error(err);
@@ -23,28 +24,23 @@ export const Main = () => {
   }
 
   useEffect(() => {
-    getTokenMetadata(tokenId, handleErr).then((data) => setTokenMetadata({...data}));
+    setLoading(true);
+    getTokenMetadata(tokenId, handleErr).then((data) => {
+      setTokenMetadata({...data});
+      setLoading(false);
+    });
   }, [tokenId]);
 
-  // TODO change the warning acoording to the 
-
-  const handleMint = (tokenId) => {
-    // TODO handle sale time not started
-    // TODO handle sale time not
-    // if (!tokenMetadata.isMinted) {
-
-    // }
-    goToMint(tokenId);
-  }
-
-  const handleChange = (tokenId) => {
-    // TODO handle not owner
-    goToChange(tokenId);
+  const tsToStr = (ts) => {
+    let date = new Date(ts * 1000).toUTCString();
+    if (date == "Invalid Date") return "TBA";
+    date = date.substr(0, date.length - 4);
+    return `${date} UTC`;
   }
 
   return (
     <MainWrapper>
-      <img src={tokenMetadata.image || DEFAULT_SVG} alt="SOE" width={400} height={400} />
+      <img src={loading ? DEFAULT_SVG : tokenMetadata.image || DEFAULT_SVG} alt="SOE" width={400} height={400} />
       <Slider
         defaultValue={0}
         sx={{
@@ -63,14 +59,17 @@ export const Main = () => {
           style={{color: TOKEN_STATUS_TO_COLOR[tokenMetadata.status] || "#000"}}
         > {tokenMetadata.status}</span>
       </div>
-      <div>owned by: {tokenMetadata.owner}</div>
-      { <div>message: "{tokenMetadata.name}"</div> }
+      <div>owned by: {loading ? "..." : tokenMetadata.owner || "null"}</div>
+      { tokenMetadata.isMinted ? 
+        <div>message: "{loading ? "..." : tokenMetadata.name}"</div> :
+        <div>sale start time: {loading ? "..." : tsToStr(tokenMetadata.saleStartTime)}</div>
+      }
       <OptionsWrapper>
         <OptionButton>view on opensea</OptionButton>
-        <OptionButton onClick={(e) => handleMint(tokenId)}>mint</OptionButton>
-        <OptionButton onClick={(e) => handleChange(tokenId)}>change message</OptionButton>
+        <OptionButton onClick={(e) => goToMint(tokenId)}>mint</OptionButton>
+        <OptionButton onClick={(e) => goToChange(tokenId)}>change message</OptionButton>
       </OptionsWrapper>
-      <div style={{ color: "#DE9300"}}>{warning || "\n"}</div>
+      <div style={{ color: "#DE9300"}}>{warning}</div>
     </MainWrapper>
   )
 }

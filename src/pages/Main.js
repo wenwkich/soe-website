@@ -66,7 +66,7 @@ export const Main = () => {
       <div>owned by: {loading ? "..." : tokenMetadata.owner || "null"}</div>
       { tokenMetadata.isMinted ? 
         <Message>message: "{loading ? "..." : tokenMetadata.name}"</Message> :
-        <div>sale start time: {loading ? "..." : tsToStr(tokenMetadata.saleStartTime)}</div>
+        <div>mint start time: {loading ? "..." : tsToStr(tokenMetadata.saleStartTime)}</div>
       }
       <OptionsWrapper>
         <OptionButton><Link href={`https://opensea.io/assets/${contractAddress}/${tokenId}`} target="_blank">view on opensea</Link></OptionButton>

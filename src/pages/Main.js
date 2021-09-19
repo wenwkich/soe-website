@@ -46,7 +46,7 @@ export const Main = () => {
       <Slider
         defaultValue={0}
         sx={{
-          width: 450,
+          width: 400,
           color: '#000',
         }}
         step={1}

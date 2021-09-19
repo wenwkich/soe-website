@@ -68,7 +68,7 @@ export const Main = () => {
       }
       <OptionsWrapper>
         <OptionButton><Link href={`https://opensea.io/assets/${contractAddress}/${tokenId}`} target="_blank">view on opensea</Link></OptionButton>
-        <OptionButton onClick={(e) => goToMint(tokenId)}>mint</OptionButton>
+        <OptionButton disabled={loading || tokenMetadata.isMinted} onClick={(e) => goToMint(tokenId)}>mint</OptionButton>
         <OptionButton onClick={(e) => goToChange(tokenId)}>change message</OptionButton>
       </OptionsWrapper>
     </MainWrapper>
@@ -83,6 +83,12 @@ const Message = styled.div`
 
 const OptionButton = styled(OutlinedButton)`
   min-width: 25%;
+
+  &[disabled]
+  {
+    pointer-events: none;
+    opacity: 0.7;
+  }
 `;
 
 const MainWrapper = styled.div`

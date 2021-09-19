@@ -54,7 +54,7 @@ export const QnA = () => {
         <p>
           WHEN IS "DAY 1"?
           <br />
-          - stay tune in <a href="https://discord.gg/t4Q78ssF" target="_blank">discord</a> to find out
+          - stay tune in <a href="https://discord.gg/t4Q78ssF" target="_blank" rel="noreferrer">discord</a> to find out
         </p>
         <p>
           CAN I GET IT FROM OPENSEA?
@@ -64,7 +64,7 @@ export const QnA = () => {
         <p>
           SOCIAL MEDIA?
           <br />
-          - <a href="https://twitter.com/soe42nft" target="_blank">twitter</a> & <a href="https://discord.gg/t4Q78ssF" target="_blank">discord</a>
+          - <a href="https://twitter.com/soe42nft" target="_blank" rel="noreferrer">twitter</a> & <a href="https://discord.gg/t4Q78ssF" target="_blank" rel="noreferrer">discord</a>
         </p>
     </QnAWrapper>
   )

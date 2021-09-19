@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useContext } from "react"
 import styled from "styled-components";
 import { OutlinedButton } from "../components/common";
-import { TOKEN_STATUS_TO_COLOR } from "../constants";
+import { DEFAULT_SVG, TOKEN_STATUS_TO_COLOR } from "../constants";
 import { AppContext } from "../contexts/AppContext";
 import { useTokenMetadata } from "../hooks/useTokenMetadata";
 
@@ -17,8 +17,13 @@ export const Main = () => {
   const { goToMint, goToChange } = useContext(AppContext);
   const getTokenMetadata = useTokenMetadata();
 
+  const handleErr = (err) => {
+    console.error(err);
+    setWarning(err.message);
+  }
+
   useEffect(() => {
-    getTokenMetadata(tokenId).then((data) => setTokenMetadata({...data}));
+    getTokenMetadata(tokenId, handleErr).then((data) => setTokenMetadata({...data}));
   }, [tokenId]);
 
   // TODO change the warning acoording to the 
@@ -39,7 +44,7 @@ export const Main = () => {
 
   return (
     <MainWrapper>
-      <img src={tokenMetadata.image} alt="SOE" width={400} height={400} />
+      <img src={tokenMetadata.image || DEFAULT_SVG} alt="SOE" width={400} height={400} />
       <Slider
         defaultValue={0}
         sx={{

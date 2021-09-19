@@ -1,29 +1,38 @@
 import { useCallback, useContext } from "react";
-import { TOKEN_STATUS } from "../constants";
+import { DEFAULT_SVG, TOKEN_STATUS } from "../constants";
 import { Web3Context } from "../contexts/Web3Context"
 
 export const useTokenMetadata = () => {
 
-  const { contract } = useContext(Web3Context);
+  const { contract, account } = useContext(Web3Context);
 
-  // TODO connect to contract
-  // const getTokenUri = async (tokenId) => {
-  //   return await contract.tokenURI(tokenId)
-  // };
+  const getTokenUri = (tokenId, errHandler) => {
+    return contract.tokenURI(tokenId)
+      .catch(errHandler);
+  };
 
-  // TODO connect to contract
-  const getOwner = async (tokenId) => {
-    return "0x";
+  const getOwner = (tokenId) => {
+    return contract.ownerOf(tokenId);
   }
 
-  // TODO connect to contract
-  const getIsMinted = async (tokenId) => {
-    return true;
+  const getIsImmutable = (tokenId, errHandler) => {
+    return contract.isImmutable(tokenId)
+      .catch(errHandler);
   }
 
-  // TODO connect to contract
-  const getIsImmutable = async (tokenId) => {
-    return true;
+  const getSaleTime = (tokenId, errHandler) => {
+    return contract.saleTime(tokenId)
+      .catch(errHandler);
+  }
+
+  const getMutablePrice = (tokenId, errHandler) => {
+    return contract.saleTime(tokenId)
+      .catch(errHandler);
+  }
+  
+  const getImmutablePrice = (tokenId, errHandler) => {
+    return contract.signatureChangePrice(tokenId)
+      .catch(errHandler);
   }
 
   const getStatus = (isMinted, isImmutable) => {
@@ -32,34 +41,35 @@ export const useTokenMetadata = () => {
     return TOKEN_STATUS.MUTABLE;
   }
 
-  // TODO connect to contract
-  const getSaleStartTime = async (tokenId) => {
-    return 1631966137;
-  }
+  return useCallback(async (tokenId, errHandler) => {
+    let isMinted;
+    let owner;
+    try {
+      owner = await getOwner(tokenId);
+    } catch (err) {
+      if (err == "execution reverted: Not valid nft") {
+        isMinted = false;
+      }
+    }
+    console.log(owner);
+    isMinted = owner && owner != "0x0000000000000000000000000000000000000000";
+    const isOwner = owner == account;
 
-  const getMutablePrice = async (tokenId) => {
-    return 12;
-  }
+    let tokenUri, image, name, description;
+    if (isMinted) {
+      tokenUri = await getTokenUri(tokenId, errHandler);
+      const json = Buffer.from(tokenUri.substring(29), "base64").toString();
+      ({ image, name, description } = JSON.parse(json));
+    } else {
+      image = DEFAULT_SVG;
+    }
 
-  // TODO remove this
-  const getTokenUri = async (tokenId) => "data:application/json;base64,eyJuYW1lIjogIndlIGFyZSBnb25uYSBtYWtlIGl0IiwgImRlc2NyaXB0aW9uIjogIlNpZ25hdHVyZXMgb24gRXRoZXJldW0gYXJlIG11dGFibGUsIHNpZ25hdHVyZS1saWtlIE5GVHMgZ2VuZXJhdGVkIHdpdGggb3duZXIncyBpbnB1dCIsICJpbWFnZSI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOakF3SWlCb1pXbG5hSFE5SWpZd01DSWdkbWxsZDBKdmVEMGlNQ0F3SURZd01DQTJNREFpSUhodGJHNXpQU0pvZEhSd09pOHZkM2QzTG5jekxtOXlaeTh5TURBd0wzTjJaeUkrUEhCaGRHZ2daRDBpVFNBeU1qVWdNekkxSUVNZ016VXdJREkxTUNBek5UQWdNekkxSURFM05TQXlOelVnVXlBek1qVWdNakkxSURJeU5TQXlNalVnVXlBek56VWdNVGMxSURNM05TQXlOelVnVXlBeE5UQWdNekkxSURRd01DQTBOVEFnVXlBME1EQWdOREF3SURNMU1DQXpNREFnVXlBME1qVWdNakkxSURRd01DQXpOelVnVXlBek56VWdNVFV3SURNeU5TQXlNREFnSWlCemRISnZhMlV0ZDJsa2RHZzlJak1pSUhOMGNtOXJaVDBpWW14aFkyc2lJR1pwYkd3OUluUnlZVzV6Y0dGeVpXNTBJaUF2UGp3dmMzWm5QZz09In0=";
+    const isImmutable = await getIsImmutable(tokenId, errHandler);
+    const saleStartTime = await getSaleTime(tokenId, errHandler);
 
-  return useCallback(async (tokenId) => {
-    // TODO use try catch
-    const tokenUri = await getTokenUri(tokenId);
-    const json = Buffer.from(tokenUri.substring(29), "base64").toString();
-    const { image, name, description } = JSON.parse(json);
-
-    const owner = await getOwner(tokenId);
-    const isMinted = await getIsMinted(tokenId);
-    const isImmutable = await getIsImmutable(tokenId);
-    const status = getStatus(isMinted, isImmutable);
-    const saleStartTime = await getSaleStartTime(tokenId);
-
-    // TODO compare the signer
-    const isOwner = true;
-    const immutablePrice = 420;
+    const immutablePrice = await getImmutablePrice(tokenId);
     const mutablePrice = await getMutablePrice(tokenId);
+    const status = getStatus(isMinted, isImmutable);
 
     return {
       tokenUri,

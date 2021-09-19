@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components"
 import { OutlinedButton } from "../components/common";
+import { DEFAULT_SVG } from "../constants";
 import { AppContext } from "../contexts/AppContext";
 import { useGenSvg } from "../hooks/useGenSvg";
 import { useOperations } from "../hooks/useOperations";
@@ -8,7 +9,7 @@ import { useOperations } from "../hooks/useOperations";
 export const Mint = () => {
 
   const [ message, setMessage ] = useState("");
-  const [ image, setImage ] = useState();
+  const [ image, setImage ] = useState(DEFAULT_SVG);
   const { tokenId } = useContext(AppContext);
   const genSvg = useGenSvg();
   const [ txMessage, setTxMessage ] = useState("no warnings available");

@@ -49,6 +49,7 @@ export const Mint = () => {
 const TxMessage = styled.div`
   max-width: 700px;
   overflow-wrap: break-word;
+  text-align: center;
 `;
 
 const Input = styled.textarea`

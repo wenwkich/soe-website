@@ -42,7 +42,7 @@ export const Main = () => {
 
   return (
     <MainWrapper>
-      <img src={loading ? DEFAULT_SVG : tokenMetadata.image || DEFAULT_SVG} alt="SOE" width={400} height={400} />
+      <img src={tokenMetadata.image || DEFAULT_SVG} alt="SOE" width={400} height={400} />
       <Slider
         defaultValue={0}
         sx={{

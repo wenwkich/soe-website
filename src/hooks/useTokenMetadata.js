@@ -21,8 +21,7 @@ export const useTokenMetadata = () => {
   }
 
   const getSaleTime = (tokenId, errHandler) => {
-    return contract.saleTime(tokenId)
-      .catch(errHandler);
+    return contract.saleTime(tokenId);
   }
 
   const getMutablePrice = (tokenId, errHandler) => {
@@ -47,9 +46,7 @@ export const useTokenMetadata = () => {
     try {
       owner = await getOwner(tokenId);
     } catch (err) {
-      if (err == "execution reverted: Not valid nft") {
-        isMinted = false;
-      }
+      isMinted = false;
     }
 
     isMinted = owner && owner != "0x0000000000000000000000000000000000000000";
@@ -68,8 +65,13 @@ export const useTokenMetadata = () => {
       image = DEFAULT_SVG;
     }
 
+    let saleStartTime;
     const isImmutable = await getIsImmutable(tokenId, errHandler);
-    const saleStartTime = await getSaleTime(tokenId, errHandler);
+    try {
+      saleStartTime = await getSaleTime(tokenId, errHandler);
+    } catch (err) {
+      saleStartTime = null;
+    }
 
     const immutablePrice = await getImmutablePrice();
     const mutablePrice = await getMutablePrice(tokenId);

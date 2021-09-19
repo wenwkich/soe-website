@@ -69,7 +69,7 @@ export const Main = () => {
         <OptionButton onClick={(e) => goToMint(tokenId)}>mint</OptionButton>
         <OptionButton onClick={(e) => goToChange(tokenId)}>change message</OptionButton>
       </OptionsWrapper>
-      <div style={{ color: "#DE9300"}}>{warning}</div>
+      {/* <div style={{ color: "#DE9300"}}>{warning}</div> */}
     </MainWrapper>
   )
 }

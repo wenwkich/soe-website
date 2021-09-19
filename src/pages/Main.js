@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react"
 import styled from "styled-components";
-import { OutlinedButton } from "../components/common";
-import { DEFAULT_SVG, TOKEN_STATUS_TO_COLOR } from "../constants";
+import { OutlinedButton, Link } from "../components/common";
+import { CONTRACT_ADDRESS, DEFAULT_SVG, TOKEN_STATUS_TO_COLOR } from "../constants";
 import { AppContext } from "../contexts/AppContext";
 import { useTokenMetadata } from "../hooks/useTokenMetadata";
 
@@ -17,6 +17,10 @@ export const Main = () => {
   const { goToMint, goToChange } = useContext(AppContext);
   const getTokenMetadata = useTokenMetadata();
   const [ loading, setLoading ] = useState(true);
+
+  const contractAddress = CONTRACT_ADDRESS;
+
+  console.log(contractAddress);
 
   const handleErr = (err) => {
     console.error(err);
@@ -44,7 +48,7 @@ export const Main = () => {
       <Slider
         defaultValue={0}
         sx={{
-          width: 300,
+          width: 450,
           color: '#000',
         }}
         step={1}
@@ -65,7 +69,7 @@ export const Main = () => {
         <div>sale start time: {loading ? "..." : tsToStr(tokenMetadata.saleStartTime)}</div>
       }
       <OptionsWrapper>
-        <OptionButton>view on opensea</OptionButton>
+        <OptionButton><Link href={`https://opensea.io/assets/${contractAddress}/${tokenId}`} target="_blank">view on opensea</Link></OptionButton>
         <OptionButton onClick={(e) => goToMint(tokenId)}>mint</OptionButton>
         <OptionButton onClick={(e) => goToChange(tokenId)}>change message</OptionButton>
       </OptionsWrapper>
@@ -73,6 +77,7 @@ export const Main = () => {
     </MainWrapper>
   )
 }
+
 const Message = styled.div`
   max-width: 700px;
   overflow-wrap: break-word;

@@ -8,6 +8,11 @@ export const Button = styled.div`
   }
 `;
 
+export const Link = styled.a`
+  text-decoration: none;
+  color: #000;
+`;
+
 export const OutlinedButton = styled(Button)`
   cursor: pointer;
   border: 2px solid;
@@ -16,6 +21,12 @@ export const OutlinedButton = styled(Button)`
   text-align: center;
 
   &:hover {
+    color: #fff;
+    border-color: #666;
+    background-color: #666;
+  }
+
+  &:hover > ${Link} {
     color: #fff;
     border-color: #666;
     background-color: #666;

@@ -48,16 +48,19 @@ export const Change = () => {
 
   return (
     <MintWrapper>
+      <div>SoE #{tokenId}</div>
       <div>type your message: </div>
       <Input value={message} cols="40" rows="5" onChange={(e) => setMessage(e.target.value)} />
-      <img src={image} alt="SOE" width={400} height={400} />
+      <img src={image} alt="SOE" width={300} height={300} />
       <OptionsWrapper>
         <OptionButton 
           onClick={(e) => setTokenUri(
             tokenId, 
             message, 
             tokenMetadata.mutablePrice, 
-            handleErr
+            handleErr,
+            () => setTxMessage("successful"),
+            () => setTxMessage("loading")
           )}
         >spend {mutablePrice} eth to change</OptionButton>
         <OptionButton 
@@ -65,7 +68,9 @@ export const Change = () => {
             tokenId, 
             message, 
             tokenMetadata.immutablePrice, 
-            handleErr
+            handleErr,
+            () => setTxMessage("successful"),
+            () => setTxMessage("loading")
           )}
         >spend {immutablePrice} eth to make immutable</OptionButton>
       </OptionsWrapper>
@@ -81,6 +86,7 @@ const TxMessage = styled.div`
 `;
 
 const Input = styled.textarea`
+  margin-top: 10px;
   padding: 10px;
   max-width: 100%;
   resize: none;

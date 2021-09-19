@@ -29,15 +29,18 @@ export const Mint = () => {
 
   return (
     <MintWrapper>
+      <div>SoE #{tokenId}</div>
       <div>type your message: </div>
       <Input cols="40" rows="5" onChange={(e) => setMessage(e.target.value)}/>
-      <img src={image} alt="SOE" width={400} height={400} />
+      <img src={image} alt="SOE" width={300} height={300} />
       <OptionsWrapper>
         <OptionButton 
           onClick={(e) => mintSignature(
             tokenId, 
             message, 
-            handleErr
+            handleErr,
+            () => setTxMessage("successful"),
+            () => setTxMessage("loading")
           )}
         >mint for FREE</OptionButton>
       </OptionsWrapper>
@@ -53,6 +56,7 @@ const TxMessage = styled.div`
 `;
 
 const Input = styled.textarea`
+  margin-top: 10px;
   padding: 10px;
   max-width: 95%;
   resize: none;

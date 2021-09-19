@@ -61,7 +61,7 @@ export const Main = () => {
       </div>
       <div>owned by: {loading ? "..." : tokenMetadata.owner || "null"}</div>
       { tokenMetadata.isMinted ? 
-        <div>message: "{loading ? "..." : tokenMetadata.name}"</div> :
+        <Message>message: "{loading ? "..." : tokenMetadata.name}"</Message> :
         <div>sale start time: {loading ? "..." : tsToStr(tokenMetadata.saleStartTime)}</div>
       }
       <OptionsWrapper>
@@ -73,6 +73,11 @@ export const Main = () => {
     </MainWrapper>
   )
 }
+const Message = styled.div`
+  max-width: 700px;
+  overflow-wrap: break-word;
+  text-align: center;
+`;
 
 const OptionButton = styled(OutlinedButton)`
   min-width: 25%;

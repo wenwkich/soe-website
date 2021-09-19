@@ -30,10 +30,14 @@ export const Mint = () => {
       <OptionsWrapper>
         <OptionButton onClick={(e) => handleMint()}>mint for FREE</OptionButton>
       </OptionsWrapper>
-      <div style={{ color: "#DE9300" }}>{txMessage}</div>
+      <TxMessage style={{ color: "#DE9300" }}>{txMessage}</TxMessage>
     </MintWrapper>
   )
 }
+const TxMessage = styled.div`
+  max-width: 700px;
+  overflow-wrap: break-word;
+`;
 
 const Input = styled.textarea`
   padding: 10px;

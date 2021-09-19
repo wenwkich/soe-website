@@ -49,7 +49,7 @@ export const Change = () => {
     <MintWrapper>
       <div>SoE #{tokenId}</div>
       <div>type your message: </div>
-      <Input value={message} cols="35" rows="5" onChange={(e) => setMessage(e.target.value)} />
+      <Input value={message} cols="30" rows="5" onChange={(e) => setMessage(e.target.value)} />
       <img src={image} alt="SOE" width={300} height={300} />
       <OptionsWrapper>
         <OptionButton 

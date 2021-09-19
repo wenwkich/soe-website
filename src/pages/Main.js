@@ -46,7 +46,7 @@ export const Main = () => {
       <Slider
         defaultValue={0}
         sx={{
-          width: 400,
+          width: 350,
           color: '#000',
         }}
         step={1}
@@ -61,7 +61,7 @@ export const Main = () => {
           style={{color: TOKEN_STATUS_TO_COLOR[tokenMetadata.status] || "#000"}}
         > { loading ? "..." : tokenMetadata.status }</span>
       </div>
-      <div>owned by: {loading ? "..." : tokenMetadata.owner || "null"}</div>
+      <Message>owned by: {loading ? "..." : tokenMetadata.owner || "null"}</Message>
       { tokenMetadata.isMinted ? 
         <Message>message: "{loading ? "..." : tokenMetadata.name}"</Message> :
         <div>mint start time: {loading ? "..." : tsToStr(tokenMetadata.saleStartTime)}</div>

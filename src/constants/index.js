@@ -22,7 +22,7 @@ export const SHOW_BACK_BUTTON = {
 
 export const SHOW_QNA_BUTTON = {
   [PAGES.qna]: false,
-  [PAGES.connect]: true,
+  [PAGES.connect]: false,
   [PAGES.main]: true,
   [PAGES.change]: false,
   [PAGES.mint]: false

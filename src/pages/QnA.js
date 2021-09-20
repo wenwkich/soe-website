@@ -54,7 +54,7 @@ export const QnA = () => {
         <p>
           WHEN IS "DAY 1"?
           <br />
-          - stay tune in <a href="https://discord.gg/t4Q78ssF" target="_blank" rel="noreferrer">discord</a> to find out
+        - day 1 is Tue, 21 Sep 2021 13:30:00 UTC
         </p>
         <p>
           CAN I GET IT FROM OPENSEA?

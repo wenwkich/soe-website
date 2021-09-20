@@ -27,6 +27,20 @@ export const Mint = () => {
     }
   }
 
+  const handleMint = () => {
+    if (message === "") {
+      setTxMessage("empty message is not allowed");
+      return;
+    }
+    mintSignature(
+      tokenId,
+      message,
+      handleErr,
+      () => setTxMessage("successful"),
+      () => setTxMessage("loading")
+    );
+  }
+
   return (
     <MintWrapper>
       <div>SoE #{tokenId}</div>
@@ -35,13 +49,7 @@ export const Mint = () => {
       <img src={image} alt="SOE" width={300} height={300} />
       <OptionsWrapper>
         <OptionButton 
-          onClick={(e) => mintSignature(
-            tokenId, 
-            message, 
-            handleErr,
-            () => setTxMessage("successful"),
-            () => setTxMessage("loading")
-          )}
+          onClick={(e) => handleMint()}
         >mint for FREE</OptionButton>
       </OptionsWrapper>
       <TxMessage style={{ color: "#DE9300" }}>{txMessage}</TxMessage>

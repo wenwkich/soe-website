@@ -45,6 +45,35 @@ export const Change = () => {
     }
   }
 
+  const handleMint = () => {
+    if (message === "") {
+      setTxMessage("empty message is not allowed");
+      return;
+    }
+    setTokenUri(
+      tokenId,
+      message,
+      tokenMetadata.mutablePrice,
+      handleErr,
+      () => setTxMessage("successful"),
+      () => setTxMessage("loading")
+    );
+  }
+  const handleSetImmutable = () => {
+    if (message === "") {
+      setTxMessage("empty message is not allowed");
+      return;
+    }
+    setImmutableWithUri(
+      tokenId,
+      message,
+      tokenMetadata.immutablePrice,
+      handleErr,
+      () => setTxMessage("successful"),
+      () => setTxMessage("loading")
+    );
+  }
+
   return (
     <MintWrapper>
       <div>SoE #{tokenId}</div>
@@ -53,24 +82,10 @@ export const Change = () => {
       <img src={image} alt="SOE" width={300} height={300} />
       <OptionsWrapper>
         <OptionButton 
-          onClick={(e) => setTokenUri(
-            tokenId, 
-            message, 
-            tokenMetadata.mutablePrice, 
-            handleErr,
-            () => setTxMessage("successful"),
-            () => setTxMessage("loading")
-          )}
+          onClick={(e) => handleMint()}
         >spend {mutablePrice} eth to change</OptionButton>
         <OptionButton 
-          onClick={(e) => setImmutableWithUri(
-            tokenId, 
-            message, 
-            tokenMetadata.immutablePrice, 
-            handleErr,
-            () => setTxMessage("successful"),
-            () => setTxMessage("loading")
-          )}
+          onClick={(e) => handleSetImmutable()}
         >spend {immutablePrice} eth to make immutable</OptionButton>
       </OptionsWrapper>
       <TxMessage style={{ color: "#DE9300" }}>{txMessage}</TxMessage>

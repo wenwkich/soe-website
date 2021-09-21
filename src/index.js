@@ -6,7 +6,7 @@ import 'normalize.css';
 import './index.css';
 import ReactGA from 'react-ga';
 
-ReactGA.initialize('G-403TQ2RHW6');
+ReactGA.initialize('UA-163386397-2');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(

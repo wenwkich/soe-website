@@ -19,7 +19,7 @@ export const QnA = () => {
         <p>
           HOW DOES SIGNATURES WORK?
           <br />
-          - each signature is a visualization of a **hashed** input. works just like identicons. gimme a message/name, ill give you a signature.
+          - each signature is a visualization of a **hashed** input. works just like <a href="http://identicon.net/" target="_blank" rel="noreferrer">identicons</a>. gimme a message/name, the smart contract give you a signature. this let you create the nft with your own idea.
         </p>
         <p>
           HOW MUCH IS IT?
@@ -39,7 +39,7 @@ export const QnA = () => {
         <p>
           IS IT POSSIBLE TO MAKE IT IMMUTABLE?
           <br />
-          - it is also possible to pay 420 eth (1000x the initial price) to make it immutable.
+          - it is also possible to pay 420 eth (1000x the initial price) to make it immutable. it is impossible for an immutable soe to go mutable again.
         </p>
         <p>
           ANY RESERVED TOKEN?
@@ -49,17 +49,17 @@ export const QnA = () => {
         <p>
           WHEN CAN I MINT?
           <br />
-          - time for minting the rest of 40 will be available in day 1, day 2, day 4, day 8, day 16 (8 tokens for each day)... SALE TIME TBA
+          - time for minting the rest of 40 will be available in day 1, day 2, day 4, day 8, day 16 (8 tokens for each day...)
         </p>
         <p>
           WHEN IS "DAY 1"?
           <br />
-        - day 1 is Tue, 21 Sep 2021 13:30:00 UTC
+        - "day 1" is Tue, 21 Sep 2021 13:30:00 UTC
         </p>
         <p>
           CAN I GET IT FROM OPENSEA?
           <br />
-          - if you missed the initial 42 mints, it is also available on opensea to trade.
+          - if you missed the initial 42 mints, it is also available on <a href="https://opensea.io/collection/soe-nft" target="_blank" rel="noreferrer">opensea</a> to trade.
         </p>
         <p>
           SOCIAL MEDIA?

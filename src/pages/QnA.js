@@ -64,7 +64,7 @@ export const QnA = () => {
         <p>
           SOCIAL MEDIA?
           <br />
-          - <a href="https://twitter.com/soe42nft" target="_blank" rel="noreferrer">twitter</a> & <a href="https://discord.gg/t4Q78ssF" target="_blank" rel="noreferrer">discord</a>
+          - <a href="https://twitter.com/soe42nft" target="_blank" rel="noreferrer">twitter</a> & <a href="http://discord.gg/rvFFqYSW" target="_blank" rel="noreferrer">discord</a>
         </p>
     </QnAWrapper>
   )

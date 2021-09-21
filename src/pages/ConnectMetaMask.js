@@ -3,29 +3,16 @@ import { ImportantButton } from "../components/common";
 import { Web3Context } from "../contexts/Web3Context"
 import { QnA } from "./QnA";
 import styled from 'styled-components';
-import ReactGA from 'react-ga';
 
 export const ConnectMetaMask = () => {
   const {connect} = useContext(Web3Context);
   return (
     <Wrapper>
       <HighlightedMessage>use "connect metamask" to see the signatures!</HighlightedMessage>
-      <ImportantButton onClick={(e) => {
-        ReactGA.event({
-          category: 'User',
-          action: 'Connect MetaMask Upper'
-        });
-        connect();
-      }}>connect metamask</ImportantButton>
+      <ImportantButton onClick={(e) => connect()}>connect metamask</ImportantButton>
       <QnA />
       <HighlightedMessage>use "connect metamask" to see the signatures!</HighlightedMessage>
-      <ImportantButton onClick={(e) => {
-        ReactGA.event({
-          category: 'User',
-          action: 'Connect MetaMask Lower'
-        });
-        connect();
-      }}>connect metamask</ImportantButton>
+      <ImportantButton onClick={(e) => connect()}>connect metamask</ImportantButton>
     </Wrapper>
   )
 }

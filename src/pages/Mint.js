@@ -5,7 +5,6 @@ import { DEFAULT_SVG } from "../constants";
 import { AppContext } from "../contexts/AppContext";
 import { useGenSvg } from "../hooks/useGenSvg";
 import { useOperations } from "../hooks/useOperations";
-import ReactGA from 'react-ga';
 
 export const Mint = () => {
 
@@ -29,11 +28,6 @@ export const Mint = () => {
   }
 
   const handleMint = () => {
-    ReactGA.event({
-      category: 'User',
-      action: 'Click on mint'
-    });
-
     if (message === "") {
       setTxMessage("empty message is not allowed");
       return;

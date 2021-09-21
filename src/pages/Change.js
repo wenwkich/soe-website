@@ -8,7 +8,6 @@ import { useTokenMetadata } from "../hooks/useTokenMetadata";
 import { ethers } from "ethers"; 
 import { useOperations } from "../hooks/useOperations";
 import { DEFAULT_SVG } from "../constants";
-import ReactGA from 'react-ga';
 
 export const Change = () => {
 
@@ -46,12 +45,7 @@ export const Change = () => {
     }
   }
 
-  const handleChange = () => {
-    ReactGA.event({
-      category: 'User',
-      action: 'Click on set change'
-    });
-
+  const handleMint = () => {
     if (message === "") {
       setTxMessage("empty message is not allowed");
       return;
@@ -66,11 +60,6 @@ export const Change = () => {
     );
   }
   const handleSetImmutable = () => {
-    ReactGA.event({
-      category: 'User',
-      action: 'Click on set immutable'
-    });
-
     if (message === "") {
       setTxMessage("empty message is not allowed");
       return;
@@ -93,7 +82,7 @@ export const Change = () => {
       <img src={image} alt="SOE" width={300} height={300} />
       <OptionsWrapper>
         <OptionButton 
-          onClick={(e) => handleChange()}
+          onClick={(e) => handleMint()}
         >spend {mutablePrice} eth to change</OptionButton>
         <OptionButton 
           onClick={(e) => handleSetImmutable()}

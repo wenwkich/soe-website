@@ -8,6 +8,7 @@ import { CONTRACT_ADDRESS, DEFAULT_SVG, TOKEN_STATUS_TO_COLOR } from "../constan
 import { AppContext } from "../contexts/AppContext";
 import { Web3Context } from "../contexts/Web3Context";
 import { useTokenMetadata } from "../hooks/useTokenMetadata";
+import ReactGA from 'react-ga';
 
 export const Main = () => {
 
@@ -53,7 +54,13 @@ export const Main = () => {
         min={0}
         max={41}
         valueLabelDisplay="auto"
-        onChange={(e, val) => setTmpTokenId(val)}
+        onChange={(e, val) => {
+          ReactGA.event({
+            category: 'User',
+            action: 'Scroll token ID'
+          });
+          setTmpTokenId(val);
+        }}
         onChangeCommitted={(e) => setTokenId(tmpTokenId)}
       />
       <div>SoE #{tokenId}   
@@ -68,8 +75,22 @@ export const Main = () => {
       }
       <OptionsWrapper>
         <OptionButton><Link href={`https://opensea.io/assets/${contractAddress}/${tokenId}`} target="_blank">view on opensea</Link></OptionButton>
-        <OptionButton disabled={loading || tokenMetadata.isMinted} onClick={(e) => goToMint(tokenId)}>mint</OptionButton>
-        <OptionButton onClick={(e) => goToChange(tokenId)}>change message</OptionButton>
+        <OptionButton 
+          disabled={loading || tokenMetadata.isMinted} 
+          onClick={(e) => {
+            ReactGA.event({
+              category: 'User',
+              action: 'Go to mint'
+            });
+            goToMint(tokenId);
+          }}>mint</OptionButton>
+        <OptionButton onClick={(e) => {
+          ReactGA.event({
+            category: 'User',
+            action: 'Go to Change'
+          });
+          goToChange(tokenId)
+        }}>change message</OptionButton>
       </OptionsWrapper>
     </MainWrapper>
   )

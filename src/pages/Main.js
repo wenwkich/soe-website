@@ -11,14 +11,15 @@ import { useTokenMetadata } from "../hooks/useTokenMetadata";
 
 export const Main = () => {
 
-  const [ tokenId, setTokenId ] = useState(0);
   const [ tmpTokenId, setTmpTokenId ] = useState(0);
   const [ tokenMetadata, setTokenMetadata ] = useState({});
-  const { goToMint, goToChange } = useContext(AppContext);
+  const { goToMint, goToChange, ...rest } = useContext(AppContext);
   const { blockNumber, } = useContext(Web3Context);
   const getTokenMetadata = useTokenMetadata();
   const [ loading, setLoading ] = useState(true);
   const [ firstTimeLoading, setFirstTimeLoading ] = useState(true);
+  const appTokenId = rest.tokenId;
+  const [tokenId, setTokenId] = useState(appTokenId);
 
   const contractAddress = CONTRACT_ADDRESS;
 
@@ -53,7 +54,7 @@ export const Main = () => {
     <MainWrapper>
       <img src={tokenMetadata.image || DEFAULT_SVG} alt="SOE" width={400} height={400} />
       <Slider
-        defaultValue={0}
+        defaultValue={appTokenId}
         sx={{
           width: 350,
           color: '#000',

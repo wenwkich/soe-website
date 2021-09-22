@@ -45,6 +45,10 @@ export const Main = () => {
     return `${date} UTC`;
   }
 
+  const shortenAddress = (address) => {
+    if (address && address.length > 10) return `0x${address.substring(2, 6)}...${address.substring(address.length-4)}`;
+  }
+
   return (
     <MainWrapper>
       <img src={tokenMetadata.image || DEFAULT_SVG} alt="SOE" width={400} height={400} />
@@ -69,7 +73,7 @@ export const Main = () => {
           style={{color: TOKEN_STATUS_TO_COLOR[tokenMetadata.status] || "#000"}}
         > { loading ? "..." : tokenMetadata.status }</span>
       </div>
-      <Message>owned by: {loading ? "..." : tokenMetadata.owner || "null"}</Message>
+      <Message>owned by: {loading ? "..." : shortenAddress(tokenMetadata.owner) || "null"}</Message>
       { tokenMetadata.isMinted ? 
         <Message>message: "{loading ? "..." : tokenMetadata.name}"</Message> :
         <Message>mint start time: {loading ? "..." : tsToStr(tokenMetadata.saleStartTime)}</Message>

@@ -18,6 +18,7 @@ export const Main = () => {
   const { blockNumber, } = useContext(Web3Context);
   const getTokenMetadata = useTokenMetadata();
   const [ loading, setLoading ] = useState(true);
+  const [ firstTimeLoading, setFirstTimeLoading ] = useState(true);
 
   const contractAddress = CONTRACT_ADDRESS;
 
@@ -26,12 +27,16 @@ export const Main = () => {
   }
 
   useEffect(() => {
-    setLoading(true);
+    if (firstTimeLoading) {
+      setLoading(true);
+      setFirstTimeLoading(false);
+    }
     getTokenMetadata(tokenId, handleErr).then((data) => {
-    setTokenMetadata({...data});
-    setLoading(false);
+      console.log("loaded");
+      setTokenMetadata({...data});
+      setLoading(false);
     });
-  }, [tokenId, getTokenMetadata, setTokenMetadata, setLoading, blockNumber]);
+  }, [tokenId, getTokenMetadata, setTokenMetadata, setLoading, firstTimeLoading, blockNumber]);
 
   const tsToStr = (ts) => {
     let date = new Date(ts * 1000).toUTCString();
@@ -54,7 +59,10 @@ export const Main = () => {
         max={41}
         valueLabelDisplay="auto"
         onChange={(e, val) => setTmpTokenId(val)}
-        onChangeCommitted={(e) => setTokenId(tmpTokenId)}
+        onChangeCommitted={(e) => {
+          setTokenId(tmpTokenId);
+          setFirstTimeLoading(true);
+        }}
       />
       <div>SoE #{tokenId}   
         <span 

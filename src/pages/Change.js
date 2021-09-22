@@ -8,6 +8,7 @@ import { useTokenMetadata } from "../hooks/useTokenMetadata";
 import { ethers } from "ethers"; 
 import { useOperations } from "../hooks/useOperations";
 import { DEFAULT_SVG } from "../constants";
+import { escapeJSON } from "../utils/json";
 
 export const Change = () => {
 
@@ -23,7 +24,7 @@ export const Change = () => {
   const { setTokenUri, setImmutableWithUri } = useOperations();
 
   useEffect(() => {
-    genSvg(message).then(({ image }) => setImage(image));
+    genSvg(escapeJSON(message)).then(({ image }) => setImage(image));
   }, [message, genSvg]);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export const Change = () => {
     }
     setTokenUri(
       tokenId,
-      message,
+      escapeJSON(message),
       tokenMetadata.mutablePrice,
       handleErr,
       () => setTxMessage("successful"),
@@ -66,7 +67,7 @@ export const Change = () => {
     }
     setImmutableWithUri(
       tokenId,
-      message,
+      escapeJSON(message),
       tokenMetadata.immutablePrice,
       handleErr,
       () => setTxMessage("successful"),

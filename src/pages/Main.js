@@ -33,7 +33,6 @@ export const Main = () => {
       setFirstTimeLoading(false);
     }
     getTokenMetadata(tokenId, handleErr).then((data) => {
-      console.log("loaded");
       setTokenMetadata({...data});
       setLoading(false);
     });

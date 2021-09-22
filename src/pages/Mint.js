@@ -5,6 +5,7 @@ import { DEFAULT_SVG } from "../constants";
 import { AppContext } from "../contexts/AppContext";
 import { useGenSvg } from "../hooks/useGenSvg";
 import { useOperations } from "../hooks/useOperations";
+import { escapeJSON } from "../utils/json";
 
 export const Mint = () => {
 
@@ -16,7 +17,7 @@ export const Mint = () => {
   const { mintSignature } = useOperations();
 
   useEffect(() => {
-    genSvg(message).then(({ image }) => setImage(image));
+    genSvg(escapeJSON(message)).then(({ image }) => setImage(image));
   }, [message, genSvg]);
 
   const handleErr = (err) => {
@@ -34,7 +35,7 @@ export const Mint = () => {
     }
     mintSignature(
       tokenId,
-      message,
+      escapeJSON(message),
       handleErr,
       () => setTxMessage("successful"),
       () => setTxMessage("loading")
